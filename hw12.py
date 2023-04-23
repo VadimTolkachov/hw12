@@ -129,8 +129,12 @@ class AddressBook(UserDict):
     
     def find(self, value):
         for key, rec in self.data.items():
-            if value == key or value in rec.phones:
+            if value in key:
                 print(f'{key}: {rec.phones}')
+            else:
+                for phone in rec.phones:
+                    if value in phone.value:
+                        print(f'{key}: {rec.phones}')
 
         return ''
     
@@ -244,6 +248,7 @@ def hendler(text:str):
     elif text.startswith('change'):
         return change(text)
     
+    
     elif text.startswith('dellcontact'):
         return dell_contact(text)
     
@@ -258,6 +263,7 @@ def hendler(text:str):
     
     elif text.startswith('iterator'):
         return iterator(text)
+
     
     elif text.startswith('phone'):
         return phone(text)
